@@ -1,0 +1,123 @@
+<div class="card flex justify-content-center pb-5">
+  <p-accordion [activeIndex]="0" class="w-full">
+    <p-accordionTab header="¿Cómo usar este comparador?">
+      <p>
+        Este formulario te ayuda a decidir si es mejor comprar un producto al contado o financiarlo en cuotas mientras realizas una inversión.
+      </p>
+      <p>Solo necesitas ingresar:</p>
+      <ul>
+        <li>El precio del producto.</li>
+        <li>El número de cuotas y la tasa de interés aplicable.</li>
+        <li>La tasa de retorno esperada para tu inversión. (Mensual)</li>
+      </ul>
+      <p>
+        El comparador calculará el monto inicial que deberías invertir para cubrir los pagos de las cuotas y te indicará cuál es la opción más conveniente.
+      </p>
+    </p-accordionTab>
+    <p-accordionTab header="¿Cómo se pagan las cuotas con la inversión?">
+      <p>
+        El comparador utiliza el modelo de renta fija pospagable, donde inviertes un monto inicial calculado para cubrir todas las cuotas de la financiación.
+      </p>
+      <p>Así es como funciona:</p>
+      <ul>
+        <li>Realizas una inversión inicial.</li>
+        <li>Cada mes, retiras de la inversión el monto necesario para pagar la cuota correspondiente.</li>
+        <li>Los intereses generados por la inversión permiten mantener el capital suficiente para cubrir las cuotas restantes.</li>
+      </ul>
+      <p>De esta forma, puedes financiar tu compra mientras aprovechas el rendimiento de tu inversión.</p>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+
+<div class="form-container">
+  <form #comparatorForm="ngForm">
+    <div class="surface-card p-4 border-round border-2 border-primary p-fluid">
+      <div class="grid formgrid justify-content-around p-fluid">
+        <div class="col-12 md:col-6 xl:pr-3">
+          <h2 class="text-center text-primary">Compra en Cuotas</h2>
+          <div class="field mb-4">
+            <label for="price" class="font-semibold text-900">Precio Efectivo</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">$</span>
+              <p-inputNumber inputId="price" min="0" [maxFractionDigits]="2" [(ngModel)]="price" name="price" />
+            </div>
+          </div>
+          <div class="field mb-4">
+            <label for="interest" class="font-semibold text-900">Interés</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">%</span>
+              <p-inputNumber inputId="interest"
+                min="0"
+                [maxFractionDigits]="2"
+                [(ngModel)]="interest" name="interest" />
+            </div>
+          </div>
+          <div class="field mb-4">
+            <label for="installments" class="font-semibold text-900">Cantidad de Coutas</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">N°</span>
+              <p-inputNumber inputId="installments"
+                min="0"
+                [maxFractionDigits]="2"
+                [(ngModel)]="installments" name="installments" />
+            </div>
+          </div>
+          <div class="field mb-4">
+            <label for="price" class="font-semibold text-900">Valor de la Cuota</label>
+            <div class="text-2xl font-semibold text-600 pl-2">
+              <span>$ </span>
+              <span>{{ !installmentValue ? '-' : ( installmentValue | number: '1.2-2' ) }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-6 xl:pl-3">
+          <h2 class="text-center text-primary">Inversión</h2>
+          <div class="field mb-4">
+            <label for="expected_return" class="font-semibold text-900">Retorno Esperado</label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon">%</span>
+              <p-inputNumber inputId="expected_return"
+                min="0"
+                [maxFractionDigits]="2"
+                [(ngModel)]="expectedReturn" name="expectedReturn" />
+            </div>
+          </div>
+          <div class="field mb-4">
+            <label for="price" class="font-semibold text-900">Monto Inicial de Inversión</label>
+            <div class="text-2xl font-semibold text-600 pl-2">
+              <span>$ </span>
+              <span>{{ !initialAmount ? '-' : ( initialAmount | number: '1.2-2' ) }}</span>
+            </div>
+          </div>
+          <div class="field mb-4 text-right clean">
+            <p-button label="Limpiar Formulario"
+              severity="secondary"
+              [outlined]="true"
+              styleClass="w-12rem"
+              (onClick)="cleanForm()" />
+          </div>
+        </div>
+
+        <div class="surface-border border-top-1 mb-4 col-12"></div>
+
+        <div class="field mb-4 col-12">
+          <div class="border-1 border-round-md border-300 px-4 text-lg result">
+            @if (initialAmount) {
+              @if (price && initialAmount < price) {
+                <p>
+                  Basado en los cálculos realizados, es más conveniente <b>financiar la compra en cuotas</b> e invertir un monto inicial de 
+                  <strong>${{ initialAmount | number:'1.0-2' }}</strong>.
+                </p>
+              } @else {
+                <p>
+                  Según las condiciones actuales, resulta más conveniente realizar la <b>compra al contado</b> por 
+                  <strong>${{ price | number:'1.0-2' }}</strong>
+                </p>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

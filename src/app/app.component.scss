@@ -1,0 +1,15 @@
+@use './scss/variables';
+
+:host {
+   &::before {
+      content: "";
+      height: map-get(variables.$nav-height, "short");
+      display: block;
+   }
+
+   @media (min-width: map-get(variables.$layout, "lg")) {
+      &::before {
+         height: map-get(variables.$nav-height, "long");
+      }
+   }
+}

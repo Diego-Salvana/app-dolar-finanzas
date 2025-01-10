@@ -1,0 +1,14 @@
+<p-card>
+  <h2 class="font-semibold m-0 text-center">Dólar {{ name() | dollarName }}</h2>
+  <div class="flex justify-content-between align-items-start mt-3">
+    <div class="w-5 text-center">
+      <span class="text-4xl font-bold text-primary">{{ buyRate() | number: '1.2-2' }}</span>
+      <p class="font-medium m-0 text-gray-500">Compra</p>
+    </div>
+    <div class="w-5 text-center">
+      <span class="text-4xl font-bold text-primary">{{ sellRate() | number: '1.2-2' }}</span>
+      <p class="font-medium m-0 text-gray-500">Venta</p>
+    </div>
+  </div>
+  <p class="mb-0 mt-3 text-right text-sm text-gray-500">Actualización: {{ lastUpdated() | date: 'short' }}</p>
+</p-card>

@@ -1,0 +1,43 @@
+<header class="px-4 lg:px-6 xl:px-8 pb-8 pt-5 lg:pt-6 xl:pt-7">
+  <div class="flex flex-wrap">
+    <div class="w-full xl:w-6 p-3 pr-5">
+      <span class="text-teal-600 font-bold mb-4 block">IMPULSA TU DECISIÓN FINANCIERA</span>
+      <div class="font-bold text-900 text-4xl lg:text-6xl mb-4">Toma el Control de tus Finanzas</div>
+      <p class="mt-0 mb-5 text-700 line-height-3 text-lg lg:text-xl">
+        Consulta la cotización actual del dólar en Argentina o compara si es más conveniente comprar en cuotas o en efectivo con nuestra herramienta financiera inteligente.
+      </p>
+
+      <div class="relative w-full xl:w-30rem">
+        <p-button label="Empezar"
+          icon="pi pi-arrow-right"
+          iconPos="right"
+          severity="primary"
+          [rounded]="true"
+          routerLink="dashboard/dollars"
+        />
+      </div>
+    </div>
+    <div class="w-full lg:pr-3 xl:w-6 flex align-items-center justify-content-center xl:justify-content-end mt-5 xl:mt-0">
+      <div class="img-container">
+        <img [src]="'./business.jpg'" alt="Businnes-img" class="shadow-2 header-img">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="px-4 lg:px-6 xl:px-8 pt-2 pb-8  xl:pt-5">
+  <div class="text-900 text-3xl font-bold text-center mb-3">
+    Tecnologías detrás de esta aplicación
+  </div>
+  <div class="grid mt-7">
+    @for (feature of featureList; track $index) {
+    <app-feature-card class="col-12"
+      [icon]="feature.icon"
+      [iconColor]="feature.iconColor"
+      [title]="feature.title"
+      [description]="feature.description" />
+    }
+  </div>
+</section>
+
+<app-footer />
