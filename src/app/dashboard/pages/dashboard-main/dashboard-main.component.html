@@ -1,19 +1,21 @@
-@let section = actSection();
+@let section = activeSection();
 
 <section class="px-4 lg:px-6 xl:px-8 py-6 flex justify-content-center flex-wrap">
-  <p-button label="Dólares"
-    [raised]="true"
+  <p-button 
+    label="Dólares"
+    raised
+    rounded
     [severity]="section === 'dollars' ? 'primary' : 'secondary'"
     styleClass="text-xl py-3 w-18rem"
     class="btn-select"
-    (onClick)="changeSection('dollars')"
     routerLink="dollars" />
-  <p-button label="Cuotas vs Efectivo"
-    [raised]="true"
+  <p-button 
+    label="Cuotas vs Efectivo"
+    raised
+    rounded
     [severity]="section === 'comparator' ? 'primary' : 'secondary'"
     styleClass="text-xl py-3 w-18rem"
     class="btn-select"
-    (onClick)="changeSection('comparator')"
     routerLink="comparator" />
 </section>
 
