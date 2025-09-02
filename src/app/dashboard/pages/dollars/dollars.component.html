@@ -1,18 +1,18 @@
 <div class="grid justify-content-center">
   @if (dollars$ | async; as dollars) {
-      @for (dollar of dollars; track $index) {
-        <app-dollar-card class="col-12 md:col-6 max-w-25rem"
-          [name]="dollar.nombre"
-          [buyRate]="dollar.compra"
-          [sellRate]="dollar.venta"
-          [lastUpdated]="dollar.fechaActualizacion" 
-        />
-      }
-    } @else {
-        @for (item of skeletons; track $index) {
-          <p-skeleton class="col-12 md:col-6 max-w-25rem" height="210px" borderRadius="6px" />
-        }
+    @for (dollar of dollars; track $index) {
+      <app-dollar-card class="col-12 md:col-6 max-w-25rem"
+        [name]="dollar.nombre"
+        [buyRate]="dollar.compra"
+        [sellRate]="dollar.venta"
+        [lastUpdated]="dollar.fechaActualizacion" 
+      />
     }
+  } @else {
+      @for (item of skeletons; track $index) {
+        <p-skeleton class="col-12 md:col-6 max-w-25rem" height="210px" borderRadius="6px" />
+      }
+  }
 </div>
 
 <p class="text-center text-gray-500 mt-4">Datos obtenidos de DolarApi.com</p>

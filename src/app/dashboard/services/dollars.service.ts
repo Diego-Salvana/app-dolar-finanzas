@@ -1,15 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Dollar } from '../interfaces/dollars.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
-   providedIn: 'root'
+  providedIn: 'root'
 })
 export class DollarsService {
-   private http = inject(HttpClient);
-   private url = 'https://dolarapi.com/v1/dolares';
+  private http = inject(HttpClient);
+  private url = 'https://dolarapi.com/v1/dolares';
 
-   getDollars () {
-      return this.http.get<Dollar[]>(this.url);
-   }
+  getDollars (): Observable<Dollar[]> {
+    return this.http.get<Dollar[]>(this.url);
+  }
 }

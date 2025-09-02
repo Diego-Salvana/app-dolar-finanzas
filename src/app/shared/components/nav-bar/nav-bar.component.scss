@@ -30,8 +30,8 @@ nav {
 .hide-nav-menu {
    @media (max-width: map-get(variables.$layout, "lg")) {
       opacity: 0;
-      transition-property: translate;
       transform: translateY(-100%);
+      transition: opacity .2s linear, transform 0s linear .2s;
    }
 }
 
